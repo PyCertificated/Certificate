@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Python Proficiency Certificate</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+
+            font-family: "Inter", sans-serif;
+
+            background:
+                radial-gradient(circle at 20% 20%, rgba(70, 170, 255, 0.35), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(0, 100, 255, 0.3), transparent 35%),
+                linear-gradient(135deg, #dff4ff, #74bfff, #eaf9ff);
+        }
+
+        .certificate {
+            position: relative;
+            width: 430px;
+            min-height: 850px;
+
+            padding: 30px;
+
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 32px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.70),
+                    rgba(180,225,255,0.34)
+                );
+
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 100, 210, 0.25),
+                inset 0 0 35px rgba(255,255,255,0.55);
+
+            overflow: hidden;
+        }
+
+        .certificate::before {
+            content: "";
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            top: -180px;
+            left: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.65);
+            filter: blur(10px);
+        }
+
+        .certificate::after {
+            content: "";
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            bottom: -170px;
+            right: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(90,190,255,0.35);
+            filter: blur(25px);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .python-symbol {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: linear-gradient(145deg, #1976ff, #68c9ff);
+
+            color: white;
+
+            font-size: 19px;
+            font-weight: 800;
+
+            box-shadow:
+                0 7px 18px rgba(0,120,255,0.28),
+                inset 0 1px 4px rgba(255,255,255,0.7);
+        }
+
+        .brand-text {
+            color: #0c5ec7;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        /* VERIFIED + GREEN GLOW CHECK */
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 13px;
+
+            border-radius: 50px;
+
+            border: 1px solid rgba(255,255,255,0.9);
+
+            background: rgba(255,255,255,0.45);
+
+            color: #1265c7;
+
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+
+            box-shadow:
+                0 0 15px rgba(34, 197, 94, 0.08),
+                inset 0 0 10px rgba(255,255,255,0.4);
+        }
+
+        .verified-check {
+            width: 17px;
+            height: 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: linear-gradient(145deg, #22c55e, #16a34a);
+
+            color: white;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            box-shadow:
+                0 0 7px rgba(34,197,94,0.75),
+                0 0 16px rgba(34,197,94,0.45),
+                inset 0 1px 3px rgba(255,255,255,0.65);
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 315px;
+
+            padding: 8px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.95),
+                    rgba(70,175,255,0.38)
+                );
+
+            border: 1px solid rgba(255,255,255,0.95);
+
+            box-shadow:
+                0 15px 40px rgba(0,100,220,0.18),
+                inset 0 0 20px rgba(255,255,255,0.8);
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+
+            border-radius: 19px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dff6ff,
+                    #8ed1ff
+                );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+
+            color: #1870d0;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .title h1 {
+            color: #0755ad;
+
+            font-size: 23px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .title p {
+            margin-top: 8px;
+
+            color: #2873bb;
+
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .proficiency {
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 22px;
+
+            background: rgba(255,255,255,0.40);
+
+            border: 1px solid rgba(255,255,255,0.8);
+
+            box-shadow:
+                inset 0 0 20px rgba(255,255,255,0.35);
+        }
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 12px;
+        }
+
+        .level-header span:first-child {
+            color: #0755ad;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+        }
+
+        .percentage {
+            color: #0874df;
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .progress-bar {
+            height: 10px;
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.7);
+
+            border: 1px solid rgba(255,255,255,0.95);
+
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 88%;
+            height: 100%;
+
+            border-radius: inherit;
+
+            background: linear-gradient(
+                90deg,
+                #0874df,
+                #5bc9ff
+            );
+        }
+
+        .level-name {
+            margin-top: 12px;
+
+            color: #2472ba;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .skills {
+            margin-top: 22px;
+        }
+
+        .section-title {
+            color: #0755ad;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+        .skill {
+            padding: 13px 14px;
+
+            margin-bottom: 9px;
+
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.40);
+
+            border: 1px solid rgba(255,255,255,0.75);
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 5px;
+        }
+
+        .skill-name {
+            color: #0a5ebd;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 0.8px;
+        }
+
+        .skill-score {
+            color: #1880e4;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .skill-description {
+            color: #3675ad;
+
+            font-size: 9px;
+            line-height: 1.6;
+
+            font-weight: 500;
+        }
+
+        /* OFFICIAL CORPORATE SEAL */
+
+        .seal-wrapper {
+            display: flex;
+            justify-content: center;
+
+            margin-top: 25px;
+        }
+
+        .seal {
+            position: relative;
+
+            width: 120px;
+            height: 120px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #f5fbff 46%,
+                    #dcefff 47%,
+                    #ffffff 49%,
+                    #ffffff 54%,
+                    #0b6fc7 55%,
+                    #0874df 70%,
+                    #0755ad 100%
+                );
+
+            border: 3px solid #ffffff;
+
+            box-shadow:
+                0 8px 25px rgba(0,100,210,0.28),
+                0 0 18px rgba(40,145,230,0.22),
+                inset 0 0 14px rgba(255,255,255,0.95);
+        }
+
+        /* Outer official ring */
+
+        .seal::before {
+            content: "•  PYTHON  •  VERIFIED  •  PYTHON  •  VERIFIED  •";
+
+            position: absolute;
+
+            inset: 7px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+
+            padding-top: 3px;
+
+            color: white;
+
+            font-size: 5px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            pointer-events: none;
+        }
+
+        /* Inner corporate border */
+
+        .seal::after {
+            content: "";
+
+            position: absolute;
+
+            width: 88px;
+            height: 88px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(8,99,189,0.45);
+
+            box-shadow:
+                0 0 0 3px rgba(255,255,255,0.8),
+                inset 0 0 8px rgba(8,99,189,0.12);
+        }
+
+        .seal-inner {
+            position: relative;
+            z-index: 2;
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 50%;
+
+            border: 2px solid #0a68bf;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #ffffff,
+                    #e8f7ff
+                );
+
+            color: #0755ad;
+
+            box-shadow:
+                inset 0 0 10px rgba(50,150,230,0.18);
+        }
+
+        .seal-python {
+            font-size: 19px;
+            font-weight: 900;
+
+            margin-bottom: 3px;
+
+            color: #086bc4;
+        }
+
+        .seal-main {
+            font-size: 7px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .seal-sub {
+            margin-top: 3px;
+
+            font-size: 5px;
+            font-weight: 800;
+
+            letter-spacing: 0.7px;
+
+            color: #2675b5;
+        }
+
+        .footer {
+            margin-top: 20px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid rgba(255,255,255,0.75);
+
+            text-align: center;
+        }
+
+        .footer-title {
+            color: #0755ad;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+        .footer-text {
+            margin-top: 5px;
+
+            color: #4782b7;
+
+            font-size: 8px;
+            letter-spacing: 0.7px;
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .certificate {
+                width: 100%;
+                padding: 23px;
+                min-height: auto;
+            }
+
+            .photo-frame {
+                height: 285px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="certificate">
+
+        <div class="content">
+
+            <div class="header">
+
+                <div class="brand">
+
+                    <div class="python-symbol">
+                        PY
+                    </div>
+
+                    <div class="brand-text">
+                        PYTHON
+                    </div>
+
+                </div>
+
+                <div class="status">
+
+                    <span class="verified-check">✓</span>
+
+                    VERIFIED SKILL
+
+                </div>
+
+            </div>
+
+
+            <div class="photo-frame">
+
+                <div class="photo">
+
+                    <span>YOUR PHOTO</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="title">
+
+                <h1>
+                    PYTHON PROFICIENCY
+                </h1>
+
+                <p>
+                    TECHNICAL SKILL VERIFICATION
+                </p>
+
+            </div>
+
+
+            <div class="proficiency">
+
+                <div class="level-header">
+
+                    <span>
+                        OVERALL PROFICIENCY
+                    </span>
+
+                    <span class="percentage">
+                        88%
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress"></div>
+
+                </div>
+
+                <div class="level-name">
+                    ADVANCED PYTHON DEVELOPER
+                </div>
+
+            </div>
+
+
+            <div class="skills">
+
+                <div class="section-title">
+                    VERIFIED COMPETENCIES
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-top">
+
+                        <span class="skill-name">
+                            PYTHON FUNDAMENTALS
+                        </span>
+
+                        <span class="skill-score">
+                            95%
+                        </span>
+
+                    </div>
+
+                    <div class="skill-description">
+                        Strong understanding of syntax, data types,
+                        control flow, functions and core Python concepts.
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-top">
+
+                        <span class="skill-name">
+                            OBJECT-ORIENTED PROGRAMMING
+                        </span>
+
+                        <span class="skill-score">
+                            90%
+                        </span>
+
+                    </div>
+
+                    <div class="skill-description">
+                        Practical knowledge of classes, inheritance,
+                        encapsulation, abstraction and reusable architecture.
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-top">
+
+                        <span class="skill-name">
+                            PYTHON LIBRARIES
+                        </span>
+
+                        <span class="skill-score">
+                            88%
+                        </span>
+
+                    </div>
+
+                    <div class="skill-description">
+                        Experience working with external packages,
+                        APIs, automation tools and Python development libraries.
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-top">
+
+                        <span class="skill-name">
+                            AUTOMATION & SCRIPTING
+                        </span>
+
+                        <span class="skill-score">
+                            92%
+                        </span>
+
+                    </div>
+
+                    <div class="skill-description">
+                        Ability to build practical scripts for automation,
+                        data processing and repetitive technical workflows.
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-top">
+
+                        <span class="skill-name">
+                            PYTHON SECURITY
+                        </span>
+
+                        <span class="skill-score">
+                            82%
+                        </span>
+
+                    </div>
+
+                    <div class="skill-description">
+                        Understanding of secure coding principles,
+                        defensive scripting and security-focused Python development.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="seal-wrapper">
+
+                <div class="seal">
+
+                    <div class="seal-inner">
+
+                        <div class="seal-python">
+                            PY
+                        </div>
+
+                        <div class="seal-main">
+                            PYTHON
+                        </div>
+
+                        <div class="seal-sub">
+                            SKILL VERIFIED
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer">
+
+                <div class="footer-title">
+                    PYTHON DEVELOPMENT
+                </div>
+
+                <div class="footer-text">
+                    PROFESSIONAL SKILL PROFILE
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
